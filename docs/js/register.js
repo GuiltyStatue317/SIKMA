@@ -28,9 +28,14 @@ form.addEventListener('submit', async (e) => {
         return
     }
 
-    status.innerText = 'Register success. Redirecting...'
+    if (result.session) {
+        status.innerText = 'Register success. Redirecting...'
 
-    setTimeout(() => {
-        window.location.href = './dashboard.html'
-    }, 1000)
+        setTimeout(() => {
+            window.location.href = './dashboard.html'
+        }, 1000)
+    } else {
+        status.innerText =
+            'Account created. Please login manually.'
+    }
 })
