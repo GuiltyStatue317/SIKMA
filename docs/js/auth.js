@@ -19,8 +19,9 @@ export async function registerUser(fullname, email, password) {
     }
 
     return {
-        success: true,
-        user: data.user
+    success: true,
+    user: data.user,
+    session: data.session
     }
 }
 
