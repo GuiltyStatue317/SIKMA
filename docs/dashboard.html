@@ -1,0 +1,23 @@
+<h1>Dashboard</h1>
+<p id="userInfo"></p>
+<button id="logoutBtn">Logout</button>
+
+<script type="module">
+import {
+    getCurrentUser,
+    logoutUser
+} from './js/auth.js'
+
+const user = await getCurrentUser()
+
+if (!user) {
+    window.location.href = '/login.html'
+}
+
+document.getElementById('userInfo').innerText =
+    `Login sebagai: ${user.email}`
+
+document
+.getElementById('logoutBtn')
+.addEventListener('click', logoutUser)
+</script>
