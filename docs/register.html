@@ -1,0 +1,32 @@
+<form id="registerForm">
+    <input id="fullname" type="text" placeholder="Full Name" required>
+    <input id="email" type="email" placeholder="Email" required>
+    <input id="password" type="password" placeholder="Password" required>
+    <button type="submit">Register</button>
+</form>
+
+<script type="module">
+import { registerUser } from './js/auth.js'
+
+document
+.getElementById('registerForm')
+.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const fullname = document.getElementById('fullname').value
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+
+    const result = await registerUser(
+        fullname,
+        email,
+        password
+    )
+
+    if (result.success) {
+        alert('Register berhasil')
+    } else {
+        alert(result.message)
+    }
+})
+</script>
