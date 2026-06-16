@@ -4,30 +4,4 @@
     <button type="submit">Login</button>
 </form>
 
-<script type="module">
-import { loginUser } from './js/auth.js'
-
-document
-.getElementById('loginForm')
-.addEventListener('submit', async (e) => {
-    e.preventDefault()
-
-    const email =
-        document.getElementById('email').value
-
-    const password =
-        document.getElementById('password').value
-
-    const result = await loginUser(
-        email,
-        password
-    )
-
-    if (result.success) {
-        alert('Login berhasil')
-        window.location.href = './dashboard.html'
-    } else {
-        alert(result.message)
-    }
-})
-</script>
+<script type="module" src="./js/login.js"></script>
