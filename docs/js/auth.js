@@ -80,7 +80,10 @@ export async function getUserRole(userId) {
         .eq('user_id', userId)
         .single()
 
-    if (error) return null
+    if (error) {
+        console.error(error)
+        return null
+    }
 
     return data
 }
