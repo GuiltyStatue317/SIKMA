@@ -11,6 +11,8 @@ const memberList = document.getElementById('memberList')
 const proposalList = document.getElementById('proposalList')
 const submitProposalBtn = document.getElementById('submitProposalBtn')
 submitProposalBtn.href = `./submit-proposal.html?org=${orgId}`
+const reviewProposalBtn = document.getElementById('reviewProposalBtn')
+reviewProposalBtn.href = `./review-proposals.html?org=${orgId}`
 
 
 async function loadOrganization() {
