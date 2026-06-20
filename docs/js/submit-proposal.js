@@ -23,4 +23,5 @@ form.addEventListener('submit', async (e) => {
     }
 
     alert('Proposal submitted')
+    window.location.href = `./organization-detail.html?id=${orgId}`
 })
