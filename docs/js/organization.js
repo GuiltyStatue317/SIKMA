@@ -112,3 +112,38 @@ export async function getOrganizationMembers(orgId) {
 
     return data
 }
+
+export async function submitProposal(payload) {
+    const user = await getCurrentUser()
+
+    const { data, error } = await supabase
+        .from('proposals')
+        .insert([
+            {
+                ...payload,
+                submitted_by: user.id
+            }
+        ])
+
+    if (error) {
+        console.error(error)
+        return false
+    }
+
+    return true
+}
+
+export async function getOrganizationProposals(orgId) {
+    const { data, error } = await supabase
+        .from('proposals')
+        .select('*')
+        .eq('organization_id', orgId)
+        .order('id', { ascending: false })
+
+    if (error) {
+        console.error(error)
+        return []
+    }
+
+    return data
+}
