@@ -147,3 +147,28 @@ export async function getOrganizationProposals(orgId) {
 
     return data
 }
+
+export async function reviewProposal(
+    proposalId,
+    status,
+    notes = ''
+) {
+    const user = await getCurrentUser()
+
+    const { error } = await supabase
+        .from('proposals')
+        .update({
+            status,
+            notes,
+            reviewed_by: user.id,
+            reviewed_at: new Date().toISOString()
+        })
+        .eq('id', proposalId)
+
+    if (error) {
+        console.error(error)
+        return false
+    }
+
+    return true
+}
