@@ -80,3 +80,35 @@ export async function getMyOrganizations() {
 
     return data
 }
+
+export async function getOrganizationById(orgId) {
+    const { data, error } = await supabase
+        .from('organizations')
+        .select('*')
+        .eq('id', orgId)
+        .single()
+
+    if (error) {
+        console.error(error)
+        return null
+    }
+
+    return data
+}
+
+export async function getOrganizationMembers(orgId) {
+    const { data, error } = await supabase
+        .from('organization_members')
+        .select(`
+            *,
+            users(fullname, email)
+        `)
+        .eq('organization_id', orgId)
+
+    if (error) {
+        console.error(error)
+        return []
+    }
+
+    return data
+}
