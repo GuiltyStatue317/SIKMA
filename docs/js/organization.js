@@ -172,3 +172,31 @@ export async function reviewProposal(
 
     return true
 }
+
+export async function createEvent(payload) {
+    const { data, error } = await supabase
+        .from('events')
+        .insert([payload])
+
+    if (error) {
+        console.error(error)
+        return false
+    }
+
+    return true
+}
+
+export async function getOrganizationEvents(orgId) {
+    const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('organization_id', orgId)
+        .order('id', { ascending: false })
+
+    if (error) {
+        console.error(error)
+        return []
+    }
+
+    return data
+}
